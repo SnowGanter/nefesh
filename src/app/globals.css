@@ -1,0 +1,733 @@
+@import "tailwindcss";
+
+/* ════════════════════════════════════════════════════════════════
+   NEOBRUTALISM DESIGN SYSTEM
+   ════════════════════════════════════════════════════════════════
+   Единая тема (без dark/light/amber). Чистый neobrutalism:
+   - Жирные чёрные рамки (3px)
+   - Жёсткие смещённые тени (6px, без blur)
+   - Яркие акценты: lime, yellow, cyan, pink
+   - Кремовый фон, белые карточки
+   - Шрифты: Space Grotesk + Archivo Black
+   - Вдавливание при hover/click
+   ════════════════════════════════════════════════════════════════ */
+
+@theme {
+  --color-bg: #fef9e7;
+  --color-surface: #ffffff;
+  --color-ink: #000000;
+  --color-ink-soft: #1a1a1a;
+  --color-muted: #525252;
+  --color-faint: #a3a3a3;
+
+  --color-lime: #84cc16;
+  --color-lime-dark: #65a30d;
+  --color-yellow: #fbbf24;
+  --color-yellow-dark: #d97706;
+  --color-cyan: #06b6d4;
+  --color-cyan-dark: #0891b2;
+  --color-pink: #ec4899;
+  --color-pink-dark: #db2777;
+  --color-violet: #a855f7;
+  --color-red: #ef4444;
+
+  --shadow-neo: 6px 6px 0px 0px #000000;
+  --shadow-neo-sm: 4px 4px 0px 0px #000000;
+  --shadow-neo-lg: 8px 8px 0px 0px #000000;
+  --shadow-neo-pressed: 0px 0px 0px 0px #000000;
+
+  --border-neo: 3px solid #000000;
+  --border-neo-thick: 4px solid #000000;
+
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Archivo Black", system-ui, sans-serif;
+
+  --radius-neo: 0px;
+  --radius-neo-sm: 0px;
+}
+
+/* ── Base ── */
+* {
+  box-sizing: border-box;
+  border-color: #000000;
+}
+
+html {
+  scrollbar-gutter: stable;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+body {
+  background-color: #fef9e7;
+  color: #000000;
+  min-height: 100vh;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Bold display font for headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Archivo Black", system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #000000;
+  text-transform: none;
+}
+
+/* ── Neobrutalism utility classes ── */
+
+/* Card — белая выпуклая карточка с чёрной рамкой и тенью */
+.neo-card {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 6px 6px 0px 0px #000000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.neo-card:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+.neo-card:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+/* Card flat — без hover-эффекта */
+.neo-card-flat {
+  background-color: #ffffff;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+/* Button — выпуклая кнопка */
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  font-weight: 700;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px 0px #000000;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.neo-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+.neo-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #000000;
+}
+
+/* Button variants */
+.neo-btn-lime { background-color: #84cc16; color: #000000; }
+.neo-btn-yellow { background-color: #fbbf24; color: #000000; }
+.neo-btn-cyan { background-color: #06b6d4; color: #000000; }
+.neo-btn-pink { background-color: #ec4899; color: #ffffff; }
+.neo-btn-black { background-color: #000000; color: #ffffff; }
+.neo-btn-white { background-color: #ffffff; color: #000000; }
+
+/* Input */
+.neo-input {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 500;
+  background-color: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  outline: none;
+}
+.neo-input::placeholder { color: #a3a3a3; }
+.neo-input:focus {
+  border-color: #84cc16;
+  box-shadow: 4px 4px 0px 0px #84cc16;
+  transform: translate(1px, 1px);
+}
+
+/* Badge */
+.neo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #fbbf24;
+  color: #000000;
+  border: 2px solid #000000;
+  border-radius: 0;
+  box-shadow: 2px 2px 0px 0px #000000;
+}
+
+/* Section heading — крупный чёрный заголовок */
+.neo-heading {
+  font-family: "Archivo Black", system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #000000;
+}
+
+/* Underline highlight — жёлтая подсветка под текстом */
+.neo-highlight {
+  background: linear-gradient(180deg, transparent 60%, #fbbf24 60%);
+  padding: 0 0.1em;
+}
+
+/* ── Background pattern: subtle dotted grid ── */
+body {
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 14px; height: 14px; }
+::-webkit-scrollbar-track { background: #fef9e7; border-left: 2px solid #000; }
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 2px solid #fef9e7;
+}
+::-webkit-scrollbar-thumb:hover { background: #84cc16; }
+
+.custom-scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #fef9e7; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #000; border: 2px solid #fff; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #84cc16; }
+
+/* ── Selection ── */
+::selection {
+  background-color: #84cc16;
+  color: #000000;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   OVERRIDE EXISTING TAILWIND CLASSES — apply neobrutalism globally
+   ════════════════════════════════════════════════════════════════ */
+
+/* All surfaces become neobrutalist cards */
+.bg-white\/\[0\.03\],
+.bg-white\/\[0\.04\],
+.bg-white\/\[0\.06\],
+.bg-white\/\[0\.02\] {
+  background-color: #ffffff !important;
+  border: 3px solid #000000 !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0px 0px #000000 !important;
+  backdrop-filter: none !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+
+/* Subtle backgrounds (footer, headers within cards) */
+.bg-white\/\[0\.02\] {
+  background-color: #fef9e7 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Dark surfaces → inverted (black background) */
+.bg-zinc-950 { background-color: #fef9e7 !important; color: #000 !important; }
+.bg-zinc-950\/70,
+.bg-zinc-950\/80,
+.bg-zinc-950\/90,
+.bg-zinc-950\/50,
+.bg-zinc-950\/40 {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  backdrop-filter: none !important;
+  border-bottom: 3px solid #000 !important;
+  box-shadow: 0 6px 0px 0px #000 !important;
+}
+
+.bg-zinc-900,
+.bg-zinc-900\/95,
+.bg-zinc-900\/90,
+.bg-zinc-900\/60,
+.bg-zinc-900\/50,
+.bg-zinc-900\/40 {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 6px 6px 0px 0px #000 !important;
+  backdrop-filter: none !important;
+}
+
+.bg-zinc-800,
+.bg-zinc-800\/40,
+.bg-zinc-800\/60 {
+  background-color: #fbbf24 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+}
+
+.bg-zinc-700,
+.bg-zinc-700\/30,
+.bg-zinc-700\/50,
+.bg-zinc-700\/60 {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* White opacity backgrounds → solid */
+.bg-white\/5 { background-color: #fef9e7 !important; }
+.bg-white\/8 { background-color: #fef9e7 !important; }
+.bg-white\/10 { background-color: #fbbf24 !important; border: 2px solid #000 !important; }
+.bg-white\/15 { background-color: #84cc16 !important; border: 2px solid #000 !important; }
+.bg-white\/20 { background-color: #06b6d4 !important; border: 2px solid #000 !important; }
+
+/* Borders → solid black */
+.border-white\/5,
+.border-white\/6,
+.border-white\/8,
+.border-white\/10,
+.border-white\/12,
+.border-white\/15,
+.border-white\/20 {
+  border-color: #000000 !important;
+  border-width: 2px !important;
+}
+.divide-white\/5 > *,
+.divide-white\/8 > * {
+  border-color: #000000 !important;
+}
+
+/* Text colors */
+.text-zinc-100, .text-zinc-200, .text-white {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+.text-zinc-300 { color: #1a1a1a !important; }
+.text-zinc-400 { color: #404040 !important; }
+.text-zinc-500 { color: #525252 !important; }
+.text-zinc-600 { color: #737373 !important; }
+.text-zinc-700 { color: #a3a3a3 !important; }
+.text-zinc-950 { color: #ffffff !important; }
+.text-gray-100, .text-gray-200 { color: #000 !important; font-weight: 700 !important; }
+.text-gray-300 { color: #1a1a1a !important; }
+.text-gray-400 { color: #404040 !important; }
+.text-gray-500 { color: #525252 !important; }
+.text-gray-600 { color: #737373 !important; }
+.text-slate-200, .text-slate-300 { color: #000 !important; }
+.text-slate-400 { color: #525252 !important; }
+.text-slate-500 { color: #737373 !important; }
+
+/* Emerald → LIME (primary accent) */
+.text-emerald-300, .text-emerald-400 { color: #65a30d !important; }
+.bg-emerald-400, .bg-emerald-500 { background-color: #84cc16 !important; color: #000 !important; }
+.bg-emerald-500\/15 {
+  background-color: #fbbf24 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+  font-weight: 700 !important;
+}
+.bg-emerald-500\/10 {
+  background-color: #84cc16 !important;
+  color: #000 !important;
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0px 0px #000 !important;
+}
+.bg-emerald-500\/20, .bg-emerald-500\/25 {
+  background-color: #84cc16 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+}
+.border-emerald-400\/30,
+.border-emerald-400\/40,
+.border-emerald-400\/50 {
+  border-color: #000 !important;
+  border-width: 2px !important;
+}
+.border-emerald-500\/20,
+.border-emerald-500\/30 {
+  border-color: #000 !important;
+}
+.ring-emerald-500\/40 { --tw-ring-color: #000 !important; }
+
+/* Gradient buttons → flat lime with black border */
+.bg-gradient-to-r,
+.bg-gradient-to-br,
+.bg-gradient-to-b {
+  background-color: #84cc16 !important;
+  background-image: none !important;
+  color: #000 !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0px 0px #000 !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+.bg-gradient-to-r:hover,
+.bg-gradient-to-br:hover,
+.bg-gradient-to-b:hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+}
+.bg-gradient-to-r:active,
+.bg-gradient-to-br:active,
+.bg-gradient-to-b:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0px 0px 0px 0px #000 !important;
+}
+
+/* Gradient text → solid black with yellow highlight */
+.bg-clip-text {
+  background: none !important;
+  -webkit-text-fill-color: #000 !important;
+  color: #000 !important;
+}
+.from-white.bg-clip-text,
+.from-white.via-zinc-200.to-zinc-400,
+.from-emerald-300.via-teal-300.to-emerald-400 {
+  background: linear-gradient(180deg, transparent 60%, #fbbf24 60%) !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #000 !important;
+  color: #000 !important;
+}
+
+/* Other accent colors — keep but with neobrutalism borders */
+.text-amber-400 { color: #d97706 !important; }
+.text-fuchsia-400 { color: #db2777 !important; }
+.text-cyan-400 { color: #0891b2 !important; }
+.text-sky-400 { color: #0284c7 !important; }
+.text-red-400 { color: #dc2626 !important; }
+.text-rose-400 { color: #e11d48 !important; }
+
+.bg-amber-400, .bg-amber-500 { background-color: #fbbf24 !important; color: #000 !important; }
+.bg-amber-500\/10, .bg-amber-500\/15 { background-color: #fbbf24 !important; border: 2px solid #000 !important; }
+.bg-fuchsia-400, .bg-fuchsia-500 { background-color: #ec4899 !important; color: #fff !important; }
+.bg-fuchsia-500\/10, .bg-fuchsia-500\/15 { background-color: #ec4899 !important; border: 2px solid #000 !important; color: #fff !important; }
+.bg-cyan-400, .bg-cyan-500 { background-color: #06b6d4 !important; color: #000 !important; }
+.bg-sky-400, .bg-sky-500 { background-color: #0ea5e9 !important; color: #fff !important; }
+.bg-sky-500\/15 { background-color: #0ea5e9 !important; border: 2px solid #000 !important; color: #fff !important; }
+.bg-red-500 { background-color: #ef4444 !important; color: #fff !important; }
+.bg-red-500\/10, .bg-red-500\/15 { background-color: #ef4444 !important; border: 2px solid #000 !important; color: #fff !important; }
+.bg-rose-500 { background-color: #e11d48 !important; color: #fff !important; }
+
+/* All buttons get neobrutalism treatment */
+button {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+button:not(.neo-btn):not([class*="bg-gradient"]):not([class*="border-white"]) {
+  border-radius: 0 !important;
+}
+button:active {
+  transform: translate(2px, 2px) !important;
+}
+
+/* Border buttons */
+button.border-white\/10,
+button.border-white\/8,
+a.border-white\/10,
+.border-white\/10.bg-white\/\[0\.04\] {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0px 0px #000 !important;
+}
+button.border-white\/10:hover,
+a.border-white\/10:hover,
+.border-white\/10.bg-white\/\[0\.04\]:hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="search"],
+textarea,
+select {
+  background-color: #ffffff !important;
+  color: #000 !important;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 4px 4px 0px 0px #000 !important;
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-weight: 500 !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+  outline: none !important;
+}
+input::placeholder, textarea::placeholder { color: #a3a3a3 !important; }
+input:focus, textarea:focus, select:focus {
+  border-color: #84cc16 !important;
+  box-shadow: 4px 4px 0px 0px #84cc16 !important;
+  transform: translate(1px, 1px) !important;
+  outline: none !important;
+}
+
+/* Hover surfaces */
+.hover\:bg-white\/5:hover { background-color: #fef9e7 !important; }
+.hover\:bg-white\/10:hover { background-color: #fbbf24 !important; }
+.hover\:bg-white\/\[0\.04\]:hover { background-color: #fef9e7 !important; }
+.hover\:bg-white\/\[0\.06\]:hover { background-color: #fef9e7 !important; }
+.hover\:text-white:hover { color: #000 !important; }
+.hover\:text-emerald-300:hover { color: #65a30d !important; }
+.hover\:text-emerald-400:hover { color: #65a30d !important; }
+.hover\:border-emerald-400\/40:hover,
+.hover\:border-emerald-400\/50:hover,
+.hover\:border-emerald-400\/30:hover { border-color: #000 !important; }
+.hover\:border-white\/20:hover { border-color: #000 !important; }
+
+/* Tables */
+table {
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+  background-color: #fff !important;
+  overflow: hidden;
+}
+th {
+  background-color: #000000 !important;
+  color: #fbbf24 !important;
+  border-bottom: 3px solid #000 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-size: 11px !important;
+  font-family: "Space Grotesk", sans-serif !important;
+  padding: 12px !important;
+  text-align: left;
+}
+td {
+  border-bottom: 2px solid #000 !important;
+  padding: 12px !important;
+  color: #000 !important;
+}
+tbody tr:hover td { background-color: #fef9e7 !important; }
+tbody tr:last-child td { border-bottom: none !important; }
+
+/* Modal */
+.fixed.inset-0 .bg-zinc-900,
+.fixed.inset-0 .bg-zinc-900\/95 {
+  background-color: #fff !important;
+  border: 4px solid #000 !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0px 0px #000 !important;
+}
+
+/* Remove all backdrop-blur (not neobrutalism) */
+.backdrop-blur-sm,
+.backdrop-blur-xl,
+.backdrop-blur-md,
+.backdrop-blur-lg {
+  backdrop-filter: none !important;
+}
+
+/* Remove all rounded-xl/2xl/3xl (neobrutalism = sharp corners) */
+.rounded-xl { border-radius: 0 !important; }
+.rounded-2xl { border-radius: 0 !important; }
+.rounded-3xl { border-radius: 0 !important; }
+.rounded-lg { border-radius: 0 !important; }
+.rounded-full { border-radius: 0 !important; }
+
+/* Shadows → hard black offset */
+.shadow-xl,
+.shadow-2xl,
+.shadow-lg,
+.shadow-md {
+  box-shadow: 6px 6px 0px 0px #000 !important;
+}
+.shadow-lg.shadow-black\/40,
+.shadow-lg.shadow-black\/50,
+.shadow-2xl.shadow-black\/50,
+.shadow-black\/40,
+.shadow-black\/50,
+.shadow-black\/30 {
+  box-shadow: 6px 6px 0px 0px #000 !important;
+}
+.shadow-emerald-500\/25,
+.shadow-emerald-500\/30,
+.shadow-emerald-500\/10,
+.shadow-amber-500\/25,
+.shadow-amber-500\/30,
+.shadow-fuchsia-500\/25,
+.shadow-fuchsia-500\/30,
+.shadow-cyan-500\/25,
+.shadow-sky-500\/25 {
+  box-shadow: 4px 4px 0px 0px #000 !important;
+}
+
+/* Inner shadow → solid border */
+.shadow-inner {
+  box-shadow: none !important;
+  border: 2px solid #000 !important;
+}
+
+/* Animate-in — disabled opacity:0 to prevent hydration mismatch */
+.animate-in {
+  animation: none;
+}
+
+/* Pulse — keep for online indicator */
+.animate-pulse {
+  animation: neo-pulse 2s ease-in-out infinite;
+}
+@keyframes neo-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Forum spoiler tags */
+.spoiler-tag {
+  background-color: #000 !important;
+  border: 2px solid #000 !important;
+  color: #fbbf24 !important;
+  font-weight: 700 !important;
+  padding: 2px 6px !important;
+}
+.spoiler-tag .spoiler-content { display: none !important; }
+.spoiler-tag.spoiler-revealed {
+  background-color: #84cc16 !important;
+  border-color: #000 !important;
+}
+.spoiler-tag.spoiler-revealed .spoiler-content {
+  display: inline !important;
+  color: #000 !important;
+}
+.spoiler-tag.spoiler-revealed::before {
+  content: '📦 раскрыто: ';
+  color: #000;
+  font-size: 0.75rem;
+}
+
+/* Forum post content — markdown */
+.forum-post-content { color: #000 !important; }
+.forum-post-content pre {
+  background-color: #000 !important;
+  color: #84cc16 !important;
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+  padding: 12px !important;
+  white-space: pre-wrap;
+}
+.forum-post-content code {
+  background-color: #fef9e7 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  padding: 2px 6px !important;
+  font-weight: 700 !important;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.forum-post-content img {
+  max-width: 100%;
+  border: 3px solid #000 !important;
+  border-radius: 0 !important;
+}
+.forum-post-content a { color: #0891b2 !important; text-decoration: underline; font-weight: 700; }
+.forum-post-content blockquote {
+  border-left: 4px solid #000 !important;
+  background-color: #fef9e7 !important;
+  padding: 8px 12px !important;
+  margin: 8px 0 !important;
+  font-style: italic;
+}
+.forum-post-content h1, .forum-post-content h2, .forum-post-content h3 {
+  font-family: "Archivo Black", sans-serif !important;
+  font-weight: 900 !important;
+  color: #000 !important;
+}
+
+/* Item links in forum */
+.item-link {
+  background-color: #fbbf24 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  border-radius: 0 !important;
+  padding: 2px 6px !important;
+  font-weight: 700 !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s !important;
+}
+.item-link:hover {
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0px 0px #000 !important;
+}
+
+/* Floating background orbs → HIDE (not neobrutalism) */
+.app-bg-orb-1, .app-bg-orb-2, .app-bg-orb-3, .app-grid-overlay {
+  display: none !important;
+}
+
+/* Any element with bg-emerald/amber/fuchsia/cyan opacity → neobrutalism */
+[class*="bg-emerald-500/5"],
+[class*="bg-amber-500/5"],
+[class*="bg-fuchsia-500/5"] {
+  display: none !important;
+}
+
+/* Selection bg */
+.selection\:bg-emerald-500\/30::selection {
+  background-color: #84cc16 !important;
+  color: #000 !important;
+}
+.selection\:text-emerald-200::selection {
+  color: #000 !important;
+}
+
+/* Press motion only for controls that visually have a neobrutalist shadow. */
+.neo-btn,
+button[style*="box-shadow"],
+a[style*="box-shadow"],
+[role="button"][style*="box-shadow"],
+button.border-white\/10,
+button.border-white\/8,
+a.border-white\/10 {
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+.neo-btn:hover,
+button[style*="box-shadow"]:hover,
+a[style*="box-shadow"]:hover,
+[role="button"][style*="box-shadow"]:hover,
+button.border-white\/10:hover,
+button.border-white\/8:hover,
+a.border-white\/10:hover {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 2px 2px 0px 0px #000 !important;
+}
+.neo-btn:active,
+button[style*="box-shadow"]:active,
+a[style*="box-shadow"]:active,
+[role="button"][style*="box-shadow"]:active,
+button.border-white\/10:active,
+button.border-white\/8:active,
+a.border-white\/10:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0 0 0 0 #000 !important;
+}
+
+/* Route-level entrance: disabled to prevent hydration mismatch.
+   The animation caused SSR/client mismatch because opacity:0 rendered on server
+   but opacity:1 after hydration. */
+.neo-route-enter {
+  animation: none;
+}
